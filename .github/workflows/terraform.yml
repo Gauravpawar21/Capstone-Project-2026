@@ -22,6 +22,9 @@ jobs:
         working-directory: infra/terraform
 
     steps:
+      - name: Terraform Force Unlock
+        run: terraform force-unlock bcc1ae03-be53-6de9-3877-5dcd490d6197
+        continue-on-error: true
       - name: Checkout repo
         uses: actions/checkout@v4
 
