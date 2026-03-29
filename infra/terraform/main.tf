@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "s3_access" {
 # -----------------------------
 
 resource "aws_s3_bucket" "upload_bucket" {
-  bucket        = var.upload_bucket_name
+  bucket        = var.upload_bucket_name1
   force_destroy = true
 }
 

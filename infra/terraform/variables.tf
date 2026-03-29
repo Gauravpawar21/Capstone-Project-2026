@@ -2,7 +2,7 @@ variable "aws_region" {
   description = "AWS region to deploy resources"
   default     = "us-east-1"
 }
-variable "upload_bucket_name" {
+variable "upload_bucket_name1" {
   description = "Name of the S3 bucket to upload files"
   type        = string
 }
