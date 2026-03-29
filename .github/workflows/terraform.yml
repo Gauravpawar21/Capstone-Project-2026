@@ -37,12 +37,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Terraform Init (Reconfigure)
+        run: terraform init -reconfigure
+      
       - name: Terraform Force Unlock         # ← After credentials are configured
         run: terraform force-unlock bcc1ae03-be53-6de9-3877-5dcd490d6197
         continue-on-error: true
-
-      - name: Terraform Init (Reconfigure)
-        run: terraform init -reconfigure
 
       - name: Terraform Plan
         run: terraform plan
