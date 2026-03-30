@@ -14,7 +14,7 @@ env:
 
 jobs:
   terraform:
-    name: Terraform Apply
+    name: Terraform Apply -lock=false
     runs-on: ubuntu-latest
 
     defaults:
@@ -37,11 +37,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Terraform Force Unlock
+      - name: Terraform Force Unlock -lock=false
         run: terraform force-unlock -force bcc1ae03-be53-6de9-3877-5dcd490d6197 -auto-approve
         continue-on-error: true
 
-      - name: Terraform Init (Reconfigure)
+      - name: Terraform Init (Reconfigure) -lock=false
         run: terraform init -reconfigure
       
       - name: Terraform Plan
