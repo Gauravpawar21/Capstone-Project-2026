@@ -271,7 +271,7 @@ resource "aws_lambda_function" "presign_lambda" {
 
   environment {
     variables = {
-      BUCKET_NAME = var.upload_bucket_name
+      BUCKET_NAME = var.upload_bucket_name1
     }
   }
 }
