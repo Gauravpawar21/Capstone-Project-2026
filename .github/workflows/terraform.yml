@@ -15,8 +15,8 @@ env:
 jobs:
   terraform:
     name: Terraform Apply
-    runs-on: ubuntu-latest -lock=false
-
+    runs-on: ubuntu-latest
+    
     defaults:
       run:
         working-directory: infra/terraform
