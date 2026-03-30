@@ -14,8 +14,8 @@ env:
 
 jobs:
   terraform:
-    name: Terraform Apply -lock=false
-    runs-on: ubuntu-latest
+    name: Terraform Apply
+    runs-on: ubuntu-latest -lock=false
 
     defaults:
       run:
@@ -37,17 +37,17 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Terraform Force Unlock -lock=false
-        run: terraform force-unlock -force bcc1ae03-be53-6de9-3877-5dcd490d6197 -auto-approve
+      - name: Terraform Force Unlock
+        run: terraform force-unlock -force bcc1ae03-be53-6de9-3877-5dcd490d6197 -auto-approve -lock=false
         continue-on-error: true
 
-      - name: Terraform Init (Reconfigure) -lock=false
-        run: terraform init -reconfigure
+      - name: Terraform Init (Reconfigure)
+        run: terraform init -reconfigure -lock=false
       
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -lock=false
 
       - name: Terraform Apply
         env:
           GZIP: "false"
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -lock=false
