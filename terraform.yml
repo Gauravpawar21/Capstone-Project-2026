@@ -5,6 +5,8 @@ on:
     branches:
       - main
 
+concurrency: terraform-deploy
+
 env:
   AWS_REGION: us-east-1
   TF_VAR_upload_bucket_name: ${{ secrets.UPLOAD_BUCKET_NAME }}
@@ -14,7 +16,7 @@ jobs:
   terraform:
     name: Terraform Apply
     runs-on: ubuntu-latest
-
+    
     defaults:
       run:
         working-directory: infra/terraform
@@ -35,7 +37,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Terraform Force Unlock
+        run: terraform force-unlock -force bcc1ae03-be53-6de9-3877-5dcd490d6197 -auto-approve -lock=false
+        continue-on-error: true
+
       - name: Terraform Init (Reconfigure)
+<<<<<<<< HEAD:terraform.yml
         run: terraform init -reconfigure
 
 
@@ -47,3 +54,14 @@ jobs:
            GZIP: "false"
          run: terraform apply -auto-approve
 #
+========
+        run: terraform init -reconfigure -lock=false
+      
+      - name: Terraform Plan
+        run: terraform plan -lock=false
+
+      - name: Terraform Apply
+        env:
+          GZIP: "false"
+        run: terraform apply -auto-approve -lock=false
+>>>>>>>> 33e1171d11c827b901e9e7e10c16f52359c5a590:.github/workflows/terraform.yml
