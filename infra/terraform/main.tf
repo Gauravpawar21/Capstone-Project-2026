@@ -49,7 +49,7 @@ resource "aws_iam_role_policy_attachment" "s3_access" {
 # Upload Bucket
 # -----------------------------
 
-resource "aws_s3_bucket" "upload_bucket" {
+resource "aws_s3_bucket" "upload_bucket21" {
   bucket        = var.upload_bucket_name2121
   force_destroy = true
 }
