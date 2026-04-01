@@ -49,7 +49,7 @@ resource "aws_iam_role_policy_attachment" "s3_access" {
 # Upload Bucket
 # -----------------------------
 
-resource "aws_s3_bucket" "upload_bucket21" {
+resource "aws_s3_bucket" "upload_bucket" {
   bucket        = var.upload_bucket_name2121
   force_destroy = true
 }
@@ -68,7 +68,7 @@ resource "aws_lambda_function" "process_uploaded_file" {
 
   environment {
     variables = {
-      UPLOAD_BUCKET = aws_s3_bucket.upload_bucket.bucket
+      UPLOAD_BUCKET = aws_s3_bucket.upload_bucket21.bucket
       SNS_TOPIC_ARN = aws_sns_topic.devops_accelerator_upload_notify.arn
     }
   }

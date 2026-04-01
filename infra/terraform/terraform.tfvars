@@ -1,6 +1,6 @@
 aws_region="us-east-1"
 
-upload_bucket_name2121="devops-accelerator-upload-bucket"
+upload_bucket_name2121="devops-accelerator-upload-bucket21"
 
 frontend_bucket_name21="devops-accelerator-frontend-hosting-bucket21"
 
